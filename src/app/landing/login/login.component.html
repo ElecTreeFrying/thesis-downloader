@@ -1,0 +1,38 @@
+
+<div id="wrap">
+  
+  <mat-card>
+    <mat-card-content>
+      
+      <form [formGroup]="loginForm">
+        
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Email address</mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+        
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>User role</mat-label>
+          <mat-select formControlName="option">
+            <mat-option value="student">Student</mat-option>
+            <mat-option value="professor">Professor</mat-option>
+            <mat-option value="admin">Admin</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="btn-cont">
+          <a class="register" (click)="register()">create an account</a>
+          <button mat-raised-button class="login" type="button" color="accent" (click)="login()">LOGIN</button>
+        </div>
+        
+      </form>
+      
+    </mat-card-content>
+  </mat-card>
+  
+</div>

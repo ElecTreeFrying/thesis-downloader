@@ -1,0 +1,75 @@
+
+.mat-toolbar > .wrap {
+  display: flex;
+  
+  .mat-icon-button {
+    margin-left: auto
+  }
+}
+
+.wrap {
+  color: white;
+  
+  .first {
+    width: 700px;
+    margin-bottom: 16px;
+  }
+  
+  .dv-upload-file {
+    margin-top: 32px;
+    
+    [type="file"] {
+      display: none;
+    }
+  }
+  
+  .dv-uploaded-files {
+    
+    .mat-card {
+      width: 700px;
+      margin-bottom: 24px;
+    }
+    
+    .head {
+      display: flex;
+      flex-flow: row wrap;
+      margin-bottom: 12px;
+      
+      h4 {
+        margin: 8px 0 0 0;
+      }
+      
+      .mat-icon-button {
+        margin-left: auto;
+      }
+    }
+    
+    .body {
+      margin-top: 24px;
+      
+      > div {
+        display: flex;
+        flex-flow: column wrap;
+        margin-bottom: 24px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      
+      > div > div {
+        display: flex;
+        
+        > div:last-child {
+          margin-left: auto;
+          display: flex;
+          p {
+            margin: 9px 0 9px 8px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  
+}

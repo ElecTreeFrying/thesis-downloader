@@ -1,5 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+**.spec.ts
+environment.*
+.firebase
+.firebaserc
+
 # compiled output
 /dist
 /tmp

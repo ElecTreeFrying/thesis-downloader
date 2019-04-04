@@ -1,0 +1,37 @@
+
+#wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  
+  .mat-card {
+    margin: auto;
+    transform: translateY(-50px);
+    
+    width: 400px;
+    padding: 20px 25px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .btn-cont {
+    display: flex;
+    
+    .login {
+      margin-left: auto;
+      width: 90px;
+    }
+    
+    .register {
+      transform: translateY(5px);
+      
+      &:hover {
+        text-decoration: underline;
+        color: rgb(96, 126, 255);
+      }
+    }
+  }
+
+}

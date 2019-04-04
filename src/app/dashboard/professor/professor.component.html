@@ -1,0 +1,168 @@
+
+
+<mat-toolbar>
+  
+  <div class="wrap">
+    <span>Professor App</span>
+    
+    <button mat-icon-button [matMenuTriggerFor]="menuToolbar">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu xPosition="before" #menuToolbar="matMenu">
+      <button mat-menu-item disabled>blank</button>
+      <button mat-menu-item disabled>blank</button>
+      <button mat-menu-item routerLink="../">Logout</button>
+    </mat-menu>
+  </div>
+  
+</mat-toolbar>
+
+<div class="wrap">
+
+  
+  
+  <div class="dv-upload-file">
+    
+    <h2>Upload research</h2>
+    <input type="file" #file (change)="fileChange($event)">
+    
+    <button mat-icon-button (click)="file.click()">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    
+    <span>
+      {{ docx?.name }}
+      
+      <button mat-icon-button *ngIf="docx?.name" (click)="fileClear()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </span>
+    
+  </div>
+
+  <mat-divider class="first"></mat-divider>
+
+  <div class="dv-uploaded-files">
+    
+    <mat-card>
+      <mat-card-content>
+        
+        <div class="head">
+          
+          <h4>Research documents</h4>
+          
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>filter_list</mat-icon>
+          </button>
+
+          <mat-menu xPosition="before" #menu="matMenu">
+            <button mat-menu-item>Sort by name</button>
+            <button mat-menu-item>Sort by date uploaded</button>
+            <button mat-menu-item>Sort by label</button>
+          </mat-menu>
+          
+        </div>
+        
+        <mat-divider></mat-divider>
+        
+        <div class="body">
+          
+          <div>
+
+            <div>
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>description</mat-icon>
+                </button>
+                <span>document_name.docx</span>
+              </div>
+  
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>cloud_download</mat-icon>
+                </button>
+                <p [ngStyle]="{ 'color': 'orange' }">pending</p>
+              </div>
+            </div>
+            
+            <div>
+              <mat-chip-list>
+                <mat-chip>dsp</mat-chip>
+                <mat-chip>sensors</mat-chip>
+                <mat-chip>agriculture</mat-chip>
+                <mat-chip>biomed</mat-chip>
+              </mat-chip-list>
+            </div>
+            
+          </div>
+          
+          <div>
+
+            <div>
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>description</mat-icon>
+                </button>
+                <span>document_name.docx</span>
+              </div>
+  
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>cloud_download</mat-icon>
+                </button>
+                <p [ngStyle]="{ 'color': 'green' }">accepted</p>
+              </div>
+            </div>
+            
+            <div>
+              <mat-chip-list>
+                <mat-chip>dsp</mat-chip>
+                <mat-chip>sensors</mat-chip>
+                <mat-chip>agriculture</mat-chip>
+                <mat-chip>biomed</mat-chip>
+              </mat-chip-list>
+            </div>
+            
+          </div>
+          
+          <div *ngFor="let item of [0,0,0,0,0,0,0]">
+
+            <div>
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>description</mat-icon>
+                </button>
+                <span>document_name.docx</span>
+              </div>
+  
+              <div>
+                <button mat-icon-button>
+                  <mat-icon>cloud_download</mat-icon>
+                </button>
+                <p [ngStyle]="{ 'color': 'red' }">rejected</p>
+              </div>
+            </div>
+            
+            <div>
+              <mat-chip-list>
+                <mat-chip>dsp</mat-chip>
+                <mat-chip>sensors</mat-chip>
+                <mat-chip>agriculture</mat-chip>
+                <mat-chip>biomed</mat-chip>
+              </mat-chip-list>
+            </div>
+            
+          </div>
+          
+          
+        </div>
+        
+      </mat-card-content>
+    </mat-card>
+    
+  </div>
+  
+
+  
+</div>

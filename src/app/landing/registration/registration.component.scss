@@ -1,0 +1,29 @@
+
+#wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  
+  .mat-card {
+    margin: auto;
+    transform: translateY(-50px);
+    
+    width: 500px;
+    padding: 20px 25px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .btn-cont {
+    display: flex;
+    
+    .register {
+      margin-left: auto;
+      width: 90px;
+    }
+    
+  }
+
+}

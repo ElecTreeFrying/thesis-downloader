@@ -1,0 +1,39 @@
+
+
+<div id="wrap">
+  
+  <form [formGroup]="uploadForm">
+  
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Research title</mat-label>
+      <input matInput type="text" formControlName="researchTitle">
+      <mat-error *ngIf="researchTitleErr?.required">This is required.</mat-error>
+      <mat-error *ngIf="researchTitleErr?.minlength">Invalid research title</mat-error>
+    </mat-form-field>
+    
+    
+    <mat-form-field color="accent" appearance="outline">
+      <mat-chip-list #chipList formControlName="researchTopic">
+        <mat-chip *ngFor="let tag of tags" color="accent" selectable="true"
+                 removable="true" (removed)="remove(tag)">
+          {{ tag.name }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <input placeholder="Topics*"
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             matChipInputAddOnBlur="true"
+             (matChipInputTokenEnd)="add($event)" />
+     <mat-error *ngIf="researchTopicErr?.required">This is required.</mat-error>
+     <mat-error *ngIf="researchTopicErr?.minlength">Topic too short.</mat-error>
+    </mat-form-field>
+    
+    <input type="file" #file (change)="fileChange($event)">
+    
+  </form>
+  
+  <div class="btn-container">
+    <button mat-raised-button type="submit" color="accent" (click)="onUpload()">UPLOAD</button>
+  </div>
+</div>

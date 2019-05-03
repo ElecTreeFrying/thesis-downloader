@@ -17,9 +17,18 @@
   
   .dv-upload-file {
     margin-top: 32px;
-    
-    [type="file"] {
-      display: none;
+    display: flex;
+    flex-flow: row wrap;
+      
+    .mat-icon-button {
+      margin-left: 8px;
+    }
+  }
+  
+  .dv-search-file {
+
+    .mat-form-field {
+      width: 700px;
     }
   }
   

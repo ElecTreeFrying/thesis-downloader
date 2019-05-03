@@ -7,15 +7,22 @@ import { MatRegistrationModule } from '../../common/core/modules/mat-registratio
 
 import { RegistrationComponent } from './registration.component';
 
+import { SharedService } from '../../common/core/services/shared.service';
+import { CheckComponent } from './check/check.component';
+
 @NgModule({
   declarations: [
-    RegistrationComponent
+    RegistrationComponent,
+    CheckComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RegistrationRoutingModule,
     MatRegistrationModule
+  ],
+  providers: [
+    SharedService
   ]
 })
 export class RegistrationModule { }

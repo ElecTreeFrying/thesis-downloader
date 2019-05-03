@@ -6,14 +6,18 @@
       
       <form [formGroup]="loginForm">
         
-        <mat-form-field color="accent" appearance="outline">
+        <mat-form-field color="accent" (keydown.enter)="login()" appearance="outline">
           <mat-label>Email address</mat-label>
           <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="emailErr?.email">Invalid email.</mat-error>
+          <mat-error *ngIf="emailErr?.required">This is required.</mat-error>
         </mat-form-field>
         
-        <mat-form-field color="accent" appearance="outline">
+        <mat-form-field color="accent" (keydown.enter)="login()" appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="passwordErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="passwordErr?.minlength">Password is too short.</mat-error>
         </mat-form-field>
 
         <mat-form-field color="accent" appearance="outline">
@@ -23,15 +27,18 @@
             <mat-option value="professor">Professor</mat-option>
             <mat-option value="admin">Admin</mat-option>
           </mat-select>
+          <mat-error *ngIf="optionErr?.required">This is required.</mat-error>
         </mat-form-field>
 
         <div class="btn-cont">
           <a class="register" (click)="register()">create an account</a>
-          <button mat-raised-button class="login" type="button" color="accent" (click)="login()">LOGIN</button>
+          <button mat-raised-button class="login" type="submit" color="accent" (click)="login()">LOGIN</button>
         </div>
         
       </form>
-      
+    </mat-card-content>
+    <mat-card-content id="progress" *ngIf="isEntered">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </mat-card-content>
   </mat-card>
   

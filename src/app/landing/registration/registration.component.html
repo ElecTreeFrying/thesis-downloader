@@ -1,52 +1,72 @@
-
 <div id="wrap">
   
   <mat-card>
     <mat-card-content>
-      
+
+
       <form [formGroup]="registrationForm">
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Full name</mat-label>
           <input matInput type="text" formControlName="name">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-error *ngIf="nameErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="nameErr?.minlength">Invalid name.</mat-error>
         </mat-form-field>
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Email address</mat-label>
           <input matInput type="email" formControlName="email">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-error *ngIf="emailErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="emailErr?.email">Invalid email.</mat-error>
         </mat-form-field>
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-error *ngIf="passwordErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="passwordErr?.minlength">Password too short.</mat-error>
         </mat-form-field>
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Confirm password</mat-label>
           <input matInput type="password" formControlName="confirm">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-error *ngIf="confirmErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="!confirmErr?.required && confirmErr?.isNotMatched">Password not matched.</mat-error>
         </mat-form-field>
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>ID number</mat-label>
           <input matInput type="text" formControlName="number">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-icon matSuffix *ngIf="number.status === 'PENDING'">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+            <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+              <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/>
+              </path>
+            </svg>
+          </mat-icon>
+          <mat-icon matSuffix *ngIf="number.status === 'VALID'">
+            <app-check></app-check>
+          </mat-icon>
+          <mat-error *ngIf="numberErr?.required">This is required.</mat-error>
+          <mat-error *ngIf="numberErr?.minlength">Invalid ID number.</mat-error>
+          <mat-error *ngIf="numberErr?.idDuplicate">ID number already exists.</mat-error>
         </mat-form-field>
         
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Role</mat-label>
-          <input matInput type="text" formControlName="role">
-          <!-- <mat-error *ngIf=""></mat-error> -->
+          <mat-select formControlName="role">
+            <mat-option value="student">Student</mat-option>
+            <mat-option disabled value="professor">Professor</mat-option>
+            <mat-option disabled value="admin">Admin</mat-option>
+          </mat-select>
+          <mat-error *ngIf="roleErr?.required">This is required.</mat-error>
         </mat-form-field>
         
         <div class="btn-cont">
           <button mat-icon-button routerLink="../">
             <mat-icon>arrow_back_ios</mat-icon>
           </button>
-          <button mat-raised-button class="register" color="accent" type="button" (click)="register()">SUBMIT</button>
+          <button mat-raised-button class="register" color="accent" type="submit" (click)="register()">SUBMIT</button>
         </div>
         
       </form>

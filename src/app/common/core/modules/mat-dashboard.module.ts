@@ -8,6 +8,12 @@ import {
   MatMenuModule,
   MatChipsModule,
   MatButtonToggleModule,
+  MatDialogModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  MatTooltipModule,
+  MatAutocompleteModule,
 } from '@angular/material';
 
 @NgModule({
@@ -20,6 +26,12 @@ import {
     MatMenuModule,
     MatChipsModule,
     MatButtonToggleModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatAutocompleteModule,
   ]
 })
 export class MatDashboardModule { }

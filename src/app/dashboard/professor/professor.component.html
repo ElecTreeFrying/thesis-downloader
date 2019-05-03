@@ -1,5 +1,4 @@
 
-
 <mat-toolbar>
   
   <div class="wrap">
@@ -12,7 +11,7 @@
     <mat-menu xPosition="before" #menuToolbar="matMenu">
       <button mat-menu-item disabled>blank</button>
       <button mat-menu-item disabled>blank</button>
-      <button mat-menu-item routerLink="../">Logout</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </div>
   
@@ -25,23 +24,28 @@
   <div class="dv-upload-file">
     
     <h2>Upload research</h2>
-    <input type="file" #file (change)="fileChange($event)">
     
-    <button mat-icon-button (click)="file.click()">
+    <button mat-icon-button (click)="uploadClick()">
       <mat-icon>cloud_upload</mat-icon>
     </button>
-    
-    <span>
-      {{ docx?.name }}
-      
-      <button mat-icon-button *ngIf="docx?.name" (click)="fileClear()">
-        <mat-icon>clear</mat-icon>
-      </button>
-    </span>
     
   </div>
 
   <mat-divider class="first"></mat-divider>
+
+  <div class="dv-search-file">
+    
+    <form [formGroup]="filterForm">
+  
+      <mat-form-field color="accent" (keydown.backspace)="backspace()" appearance="outline">
+        <mat-label>Search file</mat-label>
+        <input matInput [matAutocomplete]="reactiveAuto" formControlName="filter">
+        <mat-autocomplete #reactiveAuto="matAutocomplete" [displayWith]="displayFn"></mat-autocomplete>
+      </mat-form-field>
+  
+    </form>
+    
+  </div>
 
   <div class="dv-uploaded-files">
     
@@ -57,9 +61,12 @@
           </button>
 
           <mat-menu xPosition="before" #menu="matMenu">
-            <button mat-menu-item>Sort by name</button>
-            <button mat-menu-item>Sort by date uploaded</button>
-            <button mat-menu-item>Sort by label</button>
+            <button mat-menu-item (click)="onSort('all')">Show all</button>
+            <button mat-menu-item (click)="onSort('new')">Sort by newest</button>
+            <button mat-menu-item (click)="onSort('old')">Sort by oldest</button>
+            <button mat-menu-item (click)="onSort('acc')">Filter accepted</button>
+            <button mat-menu-item (click)="onSort('rej')">Filter rejected</button>
+            <button mat-menu-item (click)="onSort('pen')">Filter pending</button>
           </mat-menu>
           
         </div>
@@ -68,93 +75,34 @@
         
         <div class="body">
           
-          <div>
-
+          <!-- <div *ngFor="let document of ( documents | async )"> -->
+          <div *ngFor="let document of documents">
+            
             <div>
               <div>
                 <button mat-icon-button>
                   <mat-icon>description</mat-icon>
                 </button>
-                <span>document_name.docx</span>
+                <span
+                  matTooltip="{{ document?.title }}"
+                  matTooltipPosition="above">{{ document?.title | trim }}</span>
               </div>
-  
+              
               <div>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="onDownload(document.url)">
                   <mat-icon>cloud_download</mat-icon>
                 </button>
-                <p [ngStyle]="{ 'color': 'orange' }">pending</p>
+                <p [ngStyle]="{ 'color': shared.getStatus(document.status) }">{{ document?.status }}</p>
               </div>
             </div>
             
             <div>
               <mat-chip-list>
-                <mat-chip>dsp</mat-chip>
-                <mat-chip>sensors</mat-chip>
-                <mat-chip>agriculture</mat-chip>
-                <mat-chip>biomed</mat-chip>
+                <mat-chip *ngFor="let chip of document.tags">{{ chip?.name }}</mat-chip>
               </mat-chip-list>
             </div>
             
           </div>
-          
-          <div>
-
-            <div>
-              <div>
-                <button mat-icon-button>
-                  <mat-icon>description</mat-icon>
-                </button>
-                <span>document_name.docx</span>
-              </div>
-  
-              <div>
-                <button mat-icon-button>
-                  <mat-icon>cloud_download</mat-icon>
-                </button>
-                <p [ngStyle]="{ 'color': 'green' }">accepted</p>
-              </div>
-            </div>
-            
-            <div>
-              <mat-chip-list>
-                <mat-chip>dsp</mat-chip>
-                <mat-chip>sensors</mat-chip>
-                <mat-chip>agriculture</mat-chip>
-                <mat-chip>biomed</mat-chip>
-              </mat-chip-list>
-            </div>
-            
-          </div>
-          
-          <div *ngFor="let item of [0,0,0,0,0,0,0]">
-
-            <div>
-              <div>
-                <button mat-icon-button>
-                  <mat-icon>description</mat-icon>
-                </button>
-                <span>document_name.docx</span>
-              </div>
-  
-              <div>
-                <button mat-icon-button>
-                  <mat-icon>cloud_download</mat-icon>
-                </button>
-                <p [ngStyle]="{ 'color': 'red' }">rejected</p>
-              </div>
-            </div>
-            
-            <div>
-              <mat-chip-list>
-                <mat-chip>dsp</mat-chip>
-                <mat-chip>sensors</mat-chip>
-                <mat-chip>agriculture</mat-chip>
-                <mat-chip>biomed</mat-chip>
-              </mat-chip-list>
-            </div>
-            
-          </div>
-          
           
         </div>
         

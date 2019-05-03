@@ -7,6 +7,8 @@ import { MatLoginModule } from '../../common/core/modules/mat-login.module';
 
 import { LoginComponent } from './login.component';
 
+import { SharedService } from '../../common/core/services/shared.service';
+
 @NgModule({
   declarations: [
     LoginComponent
@@ -16,6 +18,9 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     LoginRoutingModule,
     MatLoginModule
+  ],
+  providers: [
+    SharedService
   ]
 })
 export class LoginModule { }
